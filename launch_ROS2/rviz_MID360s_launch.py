@@ -8,7 +8,7 @@ import launch
 xfer_format   = 0    # 0-Pointcloud2(PointXYZRTL), 1-customized pointcloud format
 multi_topic   = 0    # 0-All LiDARs share the same topic, 1-One LiDAR one topic
 data_src      = 0    # 0-lidar, others-Invalid data src
-publish_freq  = 10.0 # freqency of publish, 5.0, 10.0, 20.0, 50.0, etc.
+publish_freq  = 20.0 # freqency of publish, 5.0, 10.0, 20.0, 50.0, etc.
 output_type   = 0
 frame_id      = 'livox_frame'
 lvx_file_path = '/home/livox/livox_test.lvx'
@@ -42,22 +42,22 @@ def generate_launch_description():
         parameters=livox_ros2_params
         )
 
-    livox_rviz = Node(
-            package='rviz2',
-            executable='rviz2',
-            output='screen',
-            arguments=['--display-config', rviz_config_path]
-        )
+    #livox_rviz = Node(
+    #        package='rviz2',
+    #        executable='rviz2',
+    #        output='screen',
+    #        arguments=['--display-config', rviz_config_path]
+    #    )
 
     return LaunchDescription([
         livox_driver,
-        livox_rviz,
-        # launch.actions.RegisterEventHandler(
-        #     event_handler=launch.event_handlers.OnProcessExit(
-        #         target_action=livox_rviz,
-        #         on_exit=[
-        #             launch.actions.EmitEvent(event=launch.events.Shutdown()),
-        #         ]
-        #     )
-        # )
+        #livox_rviz,
+        #launch.actions.RegisterEventHandler(
+        #    event_handler=launch.event_handlers.OnProcessExit(
+        #        target_action=livox_rviz,
+        #        on_exit=[
+        #            launch.actions.EmitEvent(event=launch.events.Shutdown()),
+        #        ]
+        #    )
+        #)
     ])
